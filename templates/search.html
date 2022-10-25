@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+{% load static %}
+<!---Main content start--->
+<div class="container-fluid main-container ">
+<div class="container pt-4 mb-5">
+    <div class="row ">
+        <div class="col-md-12">
+<form class="d-flex col-sm-4 mx-auto" method="GEt" action="/search/">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-form" type="submit">Search</button>
+      </form>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row p-4 mx-auto">
+            {% if query %}
+            <div class="alert alert-success py-2 my-4">Search for '{{query.title}}'</div>
+            {% endif %}
+            {% if not query %}
+            <div class="alert alert-danger py-2 my-4">Not found this item '{{query.title}}', Please try again!</div>
+            {% endif %}
+            {% if result %}
+            {% for i in result%}
+            <div class="col-md-4 my-2">
+                <div class="card " style="width: 25rem;">
+  <img src="{{i.pic.url}}" class="card-img-top" alt="{{i.title}}" width="100%" height="200">
+  <div class="card-body text-center">
+    <h5 class="card-title text-capitalize ">{{i.title}}</h5>
+    <p class="card-text"></p>
+    <a href="/details/{{i.id}}" class="btn btn-image">View More</a>
+  </div>
+</div>
+            </div>
+            {% endfor %}
+            {% endif %}
+{% if not result %}
+            <h1 class="text-color">Not Found</h1>
+{% endif %}
+        </div>
+    </div>
+<div class="container my-5"></div>
+</div>
+<!---Main content close--->
+
+<style>
+    .main-container{
+        background-color:#e6f1c9;
+    }
+</style>
+{% endblock content %}

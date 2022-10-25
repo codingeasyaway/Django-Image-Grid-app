@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{image.title}}{{title}}{% endblock title %}
+{% block content %}
+{% load static %}
+
+<!--- start--->
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb py-5 justify-content-center">
+    <li class="breadcrumb-item"><a href="/" style="color:#e71f48;">Home</a></li>
+    <li class="breadcrumb-item text-capitalize" aria-current="page">{{image.title}}</li>
+  </ol>
+</nav>
+<div class="container-fluid main-container py-5">
+    <div class="container">
+        <div class="row p-4 mx-auto">
+            <img src="{{image.pic.url}}"  alt="{{image.title}}" width="100%" height="300px">
+            <h3 class="text-center text-color my-3 text-capitalize">{{image.title}}</h3>
+            <a href="{{image.pic.url}}" download class="text-center btn btn-form col-4 mx-auto" style="height:40%"><i class="fa-solid fa-download"></i> Download</a>
+        </div>
+    </div>
+</div>
+
+<!--- close--->
+<style>
+    .main-container{
+        background-color:#e6f1c9;
+    }
+</style>
+{% endblock content %}
